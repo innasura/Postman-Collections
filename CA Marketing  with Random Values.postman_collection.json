@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "f9aaf9c0-2751-4f69-9ce1-332d30c1bb9d",
-		"name": "CA Marketing v1",
+		"_postman_id": "72b58e6d-b9d7-415e-b3d0-68e902f7d1b4",
+		"name": "CA Marketing  with Random Values",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -41,7 +41,11 @@
 						"exec": [
 							"pm.environment.unset(\"id\");",
 							"pm.environment.unset(\"company\");",
-							""
+							"pm.environment.unset(\"addressLine2\");",
+							"pm.environment.unset(\"zipCode\");",
+							"",
+							"pm.environment.set(\"zipCode\", Math.floor(Math.random()*90000) + 10000);",
+							"pm.environment.set(\"addressLine2\", Math.floor(Math.random()*900) + 100);"
 						],
 						"type": "text/javascript"
 					}
@@ -64,7 +68,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"address\": {\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"Name123\",\r\n\t\t\t\"lastName\": \"Last123\"\r\n\t\t},\r\n\t\t\"company\": \"Company_123\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"444 Victory Blvd\",\r\n\t\t\"addressLine2\": \"\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"Encino\",\r\n\t\t\"country\": \"USA\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"91333\",\r\n\t\t\"phoneNumber\": \"888345645\"\r\n\t},\r\n\t\"setAsDefault\": false\r\n}",
+					"raw": "{\r\n\t\"address\": {\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}, {{$randomCompanySuffix}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"Unit {{addressLine2}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountryCode}}\",\r\n\t\t\"subdivision\": \"{{$randomCountryCode}}\",\r\n\t\t\"zipCode\": \"{{zipCode}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": false\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -247,7 +251,7 @@
 					"script": {
 						"id": "76c8e257-66aa-4b1a-b32e-e9ed29ed0727",
 						"exec": [
-							"pm.environment.set(\"company\",  \"NewComp-\" + new Date().getTime());"
+							"//pm.environment.set(\"company\",  \"NewComp-\" + new Date().getTime());"
 						],
 						"type": "text/javascript"
 					}
@@ -270,7 +274,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"address\": {\r\n\t\t\"id\": \"{{id}}\",\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"NamePatch5\",\r\n\t\t\t\"lastName\": \"LastPatch5\"\r\n\t\t},\r\n\t\t\"company\": \"{{company}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"12345 Main Str\",\r\n\t\t\"addressLine2\": \"\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"Los Angeles\",\r\n\t\t\"country\": \"USA\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"90210\",\r\n\t\t\"phoneNumber\": \"888345645\"\r\n\t},\r\n\t\"setAsDefault\": false,\r\n\t\"fieldMask\": {\r\n\t\t\"paths\": [\"fullName.firstName\", \"fullName.lastName\", \"company\", \"addressLine1\", \"addressLine2\", \"city\", \"country\", \"subdivision\", \"zipCode\", \"phoneNumber\", \"setAsDefault\"]\r\n\t}\r\n}",
+					"raw": "{\r\n\t\"address\": {\r\n\t\t\"id\": \"{{id}}\",\t\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}, {{$randomCompanySuffix}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"Unit {{addressLine2}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountryCode}}\",\r\n\t\t\"subdivision\": \"{{$randomCountryCode}}\",\r\n\t\t\"zipCode\": \"{{zipCode}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": false,\r\n\t\"fieldMask\": {\r\n\t\t\"paths\": [\"fullName.firstName\", \"fullName.lastName\", \"company\", \"addressLine1\", \"addressLine2\", \"city\", \"country\", \"subdivision\", \"zipCode\", \"phoneNumber\", \"setAsDefault\"]\r\n\t}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -278,7 +282,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses/?id={{id}}&company={{company}}",
+					"raw": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses/?id={{id}}",
 					"protocol": "https",
 					"host": [
 						"addresses",
@@ -296,10 +300,6 @@
 						{
 							"key": "id",
 							"value": "{{id}}"
-						},
-						{
-							"key": "company",
-							"value": "{{company}}"
 						}
 					]
 				}
